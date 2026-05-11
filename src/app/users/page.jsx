@@ -1,20 +1,20 @@
 import React from "react";
 import { getUsers } from "../lib/data";
 import UsersTable from "@/components/UsersTable";
-import { deleteUser } from "../lib/actions";
+import { createUser, deleteUser } from "../lib/actions";
 import AddUserModal from "@/components/AddUserModal";
 
 const UsersPage = async () => {
   const users = await getUsers();
-  console.log(users);
+  // console.log(users);
   return (
     <div>
       <div>
-        <h3>data length: {users.length}</h3>
+        <h3 className="text-center">data length: {users.length}</h3>
       </div>
-      <div className="flex justify-between">
+      <div className="w-[80%] mx-auto flex justify-between">
         <h3>This is users management page.</h3>
-        <AddUserModal></AddUserModal>
+        <AddUserModal createUserAction = {createUser}></AddUserModal>
       </div>
       <UsersTable users={users} deleteUserAction={deleteUser}></UsersTable>
     </div>
